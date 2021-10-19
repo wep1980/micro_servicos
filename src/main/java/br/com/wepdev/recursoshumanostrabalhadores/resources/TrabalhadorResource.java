@@ -3,7 +3,10 @@ package br.com.wepdev.recursoshumanostrabalhadores.resources;
 
 import br.com.wepdev.recursoshumanostrabalhadores.entities.Trabalhador;
 import br.com.wepdev.recursoshumanostrabalhadores.repository.TrabalhadorRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +20,18 @@ import java.util.List;
 public class TrabalhadorResource {
 
 
+    // Objeto que imprime informações sobre o Logger
+    private static Logger logger = LoggerFactory.getLogger(TrabalhadorResource.class);
+
+    /**
+     * Objeto(Instancia) que contem varias informações do contexto da aplicação
+     */
+    @Autowired
+    private Environment env;
+
     @Autowired
     private TrabalhadorRepository trabalhadorRepository;
+
 
 
     @GetMapping
@@ -31,6 +44,9 @@ public class TrabalhadorResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Trabalhador> findById(@PathVariable Long id){
+
+        // Imprime no logger o numero da porta que esta rodando
+        logger.info("PORT = " + env.getProperty("local.server.port"));
 
         Trabalhador obj = trabalhadorRepository.findById(id).get(); // Pegando o Optional com get()
 

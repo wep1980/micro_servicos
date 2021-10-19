@@ -11,8 +11,8 @@
     <groupId>br.com.wepdev</groupId>
     <artifactId>recursos-humanos-trabalhadores</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hr-worker</name>
-    <description>Trabalhador Microservico</description>
+    <name>Trabalhadores</name>
+    <description>Trabalhador Micros serviços</description>
 
     <properties>
         <java.version>11</java.version>
