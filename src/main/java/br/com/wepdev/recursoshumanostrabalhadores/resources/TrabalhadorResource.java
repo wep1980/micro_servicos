@@ -45,6 +45,17 @@ public class TrabalhadorResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Trabalhador> findById(@PathVariable Long id){
 
+//        int x = 1;
+//        if(x ==1){
+//            throw new RuntimeException("teste"); // Simulando uma exception.  Feito para teste do Hystrix
+//        }
+
+//        try {
+//            Thread.sleep(10000L); // Vai demorar 10 segundos antes de responder a requisição. Feito para teste do Hystrix
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         // Imprime no logger o numero da porta que esta rodando
         logger.info("PORT = " + env.getProperty("local.server.port"));
 
