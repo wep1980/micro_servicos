@@ -6,6 +6,7 @@ import br.com.wepdev.recursoshumanostrabalhadores.repository.TrabalhadorReposito
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,10 @@ public class TrabalhadorResource {
 
     @Autowired
     private TrabalhadorRepository trabalhadorRepository;
+
+    // Nome da configuração que esta no servidor de configurações centralizada que contem a configuração com github, onde esta localizado o test.config
+    @Value("${test.config}")
+    private String testConfig;
 
 
 
@@ -62,5 +67,23 @@ public class TrabalhadorResource {
         Trabalhador obj = trabalhadorRepository.findById(id).get(); // Pegando o Optional com get()
 
         return ResponseEntity.ok(obj);
+    }
+
+
+    /**
+     * Testa se o micro serviço esta conseguindo ler a configuracao do servidor de configuração centralizada.
+     *
+     * Endpoint que pega as configurações do servidor de configurações centralizadas, endpoint para teste
+     *
+     * ResponseEntity<Void> -> Não retorna nenhum corpo na resposta
+     *
+     * @return
+     */
+    @GetMapping(value = "/configs")
+    public ResponseEntity<Void> getConfigs(){
+
+        logger.info("CONFIG = " + testConfig); // imprime na tela(console) as configurações
+
+        return ResponseEntity.noContent().build(); // Resposta sem corpo
     }
 }
