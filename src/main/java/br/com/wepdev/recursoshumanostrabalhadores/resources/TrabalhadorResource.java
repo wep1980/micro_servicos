@@ -39,8 +39,8 @@ public class TrabalhadorResource {
     private TrabalhadorRepository trabalhadorRepository;
 
     // Nome da configuração que esta no servidor de configurações centralizada que contem a configuração com github, onde esta localizado o test.config
-    @Value("${test.config}")
-    private String testConfig;
+//    @Value("${test.config}")
+//    private String testConfig;
 
 
 
@@ -87,7 +87,7 @@ public class TrabalhadorResource {
     @GetMapping(value = "/configs")
     public ResponseEntity<Void> getConfigs(){
 
-        logger.info("CONFIG = " + testConfig); // imprime na tela(console) as configurações
+        //logger.info("CONFIG = " + testConfig); // imprime na tela(console) as configurações
 
         return ResponseEntity.noContent().build(); // Resposta sem corpo
     }
